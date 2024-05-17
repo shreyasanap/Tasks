@@ -1,24 +1,27 @@
-// src/components/TodoList.js
+
 import React, { useState, useEffect } from 'react';
 import './TodoList.css';
 
 const TodoList = () => {
+  // task => input field ko store karega
+  // tasks => array of tasks
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
 
 // fetches the tasks stored in localStorage, 
 // parses them from JSON format
-// sets them as the initial state for tasks
+// sets them as the initial state for tasks(jo ki array of tasks hai)
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     setTasks(storedTasks);
   }, []);
-
+// tasks ka state variable change hoga tab
+  // localstorage ko update karega with new value of tasks
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
-// updates with current value
+  
 // adds karta hai task using spread operator
   const handleAddTask = () => {
     if (task.trim() === '') return;
