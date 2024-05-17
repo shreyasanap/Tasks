@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      #container {
+        font-family: Source Sans Pro;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: black;
+        color: white;
+      }
+      .custom-div {
+        background-color: black;
+        color: white;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script>
+      function createDiv(width, height, text) {
+        var newDiv = document.createElement("div");
+        newDiv.className = "custom-div"; // Add custom class to the div
+        newDiv.textContent = text;
+
+        // Appending the div
+        document.getElementById("container").appendChild(newDiv);
+      }
+      createDiv(200, 100, "Hey I am Shreya Sanap !!!!");
+    </script>
+  </body>
+</html>

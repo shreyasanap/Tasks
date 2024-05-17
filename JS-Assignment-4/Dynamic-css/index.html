@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .text-here {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+   
+  </style>
+</head>
+<body>
+
+<div id="text-container" class="text-here">This is some example text</div>
+<input type="text" id="colorbox" placeholder="Enter color">
+<button id="colorchange">Change Color</button>
+
+<input type="range" id="fontsize" min="10" max="100" value="55">
+<button class="stylebt" id="underline">Underline</button>
+<button class="stylebt" id="italic">Italic</button>
+<button class="stylebt" id="bold">Bold</button>
+
+<select id="list">
+  <option value="serif">Serif</option>
+  <option value="sans-serif">Sans-Serif</option>
+  <option value="monospace">Monospace</option>
+  <option value="cursive">Cursive</option>
+  <option value="fantasy">Fantasy</option>
+</select>
+
+<button id="getstyle">Get CSS Properties</button>
+<p id="css-props"></p>
+
+<script>
+  var textContainer = document.getElementById('text-container');
+  var colorBox = document.getElementById('colorbox');
+  var colorChangeBtn = document.getElementById('colorchange');
+  var fontSizeInput = document.getElementById('fontsize');
+  var underlineBtn = document.getElementById('underline');
+  var italicBtn = document.getElementById('italic');
+  var boldBtn = document.getElementById('bold');
+  var fontList = document.getElementById('list');
+  var getStyleBtn = document.getElementById('getstyle');
+  var cssPropsParagraph = document.getElementById('css-props');
+
+  colorChangeBtn.addEventListener('click', function() {
+    textContainer.style.color = colorBox.value;
+  });
+
+  fontSizeInput.addEventListener('input', function() {
+    textContainer.style.fontSize = fontSizeInput.value + 'px';
+  });
+
+  underlineBtn.addEventListener('click', function() {
+    toggleStyle('textDecoration', 'underline');
+  });
+
+  italicBtn.addEventListener('click', function() {
+    toggleStyle('fontStyle', 'italic');
+  });
+
+  boldBtn.addEventListener('click', function() {
+    toggleStyle('fontWeight', 'bold');
+  });
+
+  fontList.addEventListener('change', function() {
+    textContainer.style.fontFamily = fontList.value;
+  });
+
+  getStyleBtn.addEventListener('click', function() {
+    var styles = window.getComputedStyle(textContainer);
+    var cssText = '';
+
+    for (var i = 0; i < styles.length; i++) {
+      var propName = styles[i];
+      var propValue = styles.getPropertyValue(propName);
+      cssText += propName + ': ' + propValue + '; ';
+    }
+
+    cssPropsParagraph.textContent = cssText;
+  });
+
+  function toggleStyle(styleName, value) {
+    var currentStyle = textContainer.style[styleName];
+    textContainer.style[styleName] = currentStyle === value ? 'normal' : value;
+  }
+</script>
+
+</body>
+</html>
